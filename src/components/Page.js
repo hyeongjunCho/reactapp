@@ -85,9 +85,7 @@ const Page = () => {
         <div>
           <span>Order_column</span>
           <select value={orderColumn} onChange={changeOrderColumn}>
-            <option value={null} hidden>
-              null
-            </option>
+            <option value={null}>null</option>
             <option value="person_id">person_id</option>
             <option value="gender">gender</option>
             <option value="birth">birth</option>
@@ -106,9 +104,7 @@ const Page = () => {
         <div>
           <span>Gender</span>
           <select value={gender} onChange={changeGender}>
-            <option value={null} hidden>
-              null
-            </option>
+            <option value={null}>null</option>
             {genderList.map(item => {
               return (
                 <option value={item} key={item}>
@@ -121,9 +117,7 @@ const Page = () => {
         <div>
           <span>Race</span>
           <select value={race} onChange={changeRace}>
-            <option value={null} hidden>
-              null
-            </option>
+            <option value={null}>null</option>
             {raceList.map(item => {
               return (
                 <option value={item} key={item}>
@@ -136,9 +130,7 @@ const Page = () => {
         <div>
           <span>Ethnicity</span>
           <select value={ethnicity} onChange={changeEthnicity}>
-            <option value={null} hidden>
-              null
-            </option>
+            <option value={null}>null</option>
             {ethnicityList.map(item => {
               return (
                 <option value={item} key={item}>
@@ -151,9 +143,7 @@ const Page = () => {
         <div>
           <span>Death</span>
           <select value={death} onChange={changeDeath}>
-            <option value={null} hidden>
-              null
-            </option>
+            <option value={null}>null</option>
             <option value="true">true</option>
             <option value="false">false</option>
           </select>

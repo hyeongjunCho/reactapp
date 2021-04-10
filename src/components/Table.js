@@ -24,14 +24,15 @@ const Table = props => {
 
   async function fetchData() {
     let url = `http://49.50.167.136:9871/api/patient/list?page=${page}&length=${length}`;
-    if (orderColumn) url += `&order_column=${orderColumn}`;
+    if (orderColumn && orderColumn !== 'null')
+      url += `&order_column=${orderColumn}`;
     if (orderDesc) url += `&order_desc=${orderDesc}`;
-    if (gender) url += `&gender=${gender}`;
-    if (race) url += `&race=${race}`;
-    if (ethnicity) url += `&ethnicity=${ethnicity}`;
+    if (gender && gender !== 'null') url += `&gender=${gender}`;
+    if (race && race !== 'null') url += `&race=${race}`;
+    if (ethnicity && ethnicity !== 'null') url += `&ethnicity=${ethnicity}`;
     if (ageMin) url += `&age_min=${ageMin}`;
     if (ageMax) url += `&age_max=${ageMax}`;
-    if (death) url += `&death=${death}`;
+    if (death && death !== 'null') url += `&death=${death}`;
 
     const res = await fetch(url);
     // eslint-disable-next-line no-shadow
