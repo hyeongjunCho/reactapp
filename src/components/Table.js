@@ -1,11 +1,16 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
+import Patient from './Patient';
 import './Table.scss';
 
 const Table = props => {
   const [data, setData] = useState([]);
+  const [total, setTotal] = useState([]);
   const {
     page,
+    setPage,
     length,
     orderColumn,
     orderDesc,
@@ -30,12 +35,19 @@ const Table = props => {
 
     const res = await fetch(url);
     // eslint-disable-next-line no-shadow
-    res.json().then(res => setData(res.patient.list));
+    res.json().then(res => {
+      setData(res.patient.list);
+      setTotal(res.patient.totalLength);
+    });
   }
 
   useEffect(() => {
     fetchData();
   }, [props]);
+
+  const handlePageChange = data => {
+    setPage(data.selected + 1);
+  };
 
   return (
     <div>
@@ -49,18 +61,21 @@ const Table = props => {
         <div className="isDeath">isDeath</div>
       </div>
       {data.map((item, index) => {
-        return (
-          <div className="patient" key={item.personID}>
-            <div className="personId">{item.personID}</div>
-            <div className="gender">{item.gender}</div>
-            <div className="birthDatetime">{item.birthDatetime}</div>
-            <div className="age">{item.age}</div>
-            <div className="race">{item.race}</div>
-            <div className="ethnicity">{item.ethnicity}</div>
-            <div className="isDeath">{item.isDeath ? 'true' : 'false'}</div>
-          </div>
-        );
+        return <Patient patient={item} />;
       })}
+
+      <ReactPaginate
+        previousLabel="previous"
+        nextLabel="next"
+        breakLabel="..."
+        breakClassName="break-me"
+        pageCount={total / length}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={handlePageChange}
+        containerClassName="pagination"
+        activeClassName="active"
+      />
     </div>
   );
 };
