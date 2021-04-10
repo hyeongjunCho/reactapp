@@ -8,6 +8,7 @@ import './Table.scss';
 const Table = props => {
   const [data, setData] = useState([]);
   const [total, setTotal] = useState([]);
+  const [focus, setFocus] = useState('');
   const {
     page,
     setPage,
@@ -44,6 +45,7 @@ const Table = props => {
 
   useEffect(() => {
     fetchData();
+    setFocus('');
   }, [props]);
 
   const handlePageChange = data => {
@@ -62,7 +64,7 @@ const Table = props => {
         <div className="isDeath">isDeath</div>
       </div>
       {data.map((item, index) => {
-        return <Patient patient={item} />;
+        return <Patient patient={item} focus={focus} setFocus={setFocus} />;
       })}
 
       <ReactPaginate

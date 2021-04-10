@@ -8,8 +8,7 @@ import './Patient.scss';
 const Patient = props => {
   const [conditionList, setConditionList] = useState([]);
   const [visitCount, setVisitCount] = useState(0);
-  const [focus, setFocus] = useState(false);
-  const { patient } = props;
+  const { patient, focus, setFocus } = props;
 
   async function fetchData() {
     const res = await fetch(
@@ -28,7 +27,7 @@ const Patient = props => {
   }, []);
 
   const handleOnClick = () => {
-    setFocus(true);
+    setFocus(patient.personID);
   };
 
   return (
@@ -42,7 +41,7 @@ const Patient = props => {
         <div className="ethnicity">{patient.ethnicity}</div>
         <div className="isDeath">{patient.isDeath ? 'true' : 'false'}</div>
       </div>
-      {focus && (
+      {focus === patient.personID && (
         <div className="detail">
           <div>
             <p>Condition list</p>
