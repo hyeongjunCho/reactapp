@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import Table from './Table';
+import Charts from './Charts';
 
 const Page = () => {
   const [page, setPage] = useState(1);
@@ -65,8 +67,8 @@ const Page = () => {
     res3.json().then(res => setRaceList(res.raceList));
   }
 
-  useEffect(() => {
-    fetchData();
+  useEffect(async () => {
+    await fetchData();
   }, []);
 
   return (
@@ -156,9 +158,23 @@ const Page = () => {
             <option value="false">false</option>
           </select>
         </div>
+        <form>
+          <label>
+            Age_min:
+            <input type="text" value={ageMin} onChange={changeAgeMin} />
+          </label>
+        </form>
+        <form>
+          <label>
+            Age_max:
+            <input type="text" value={ageMax} onChange={changeAgeMax} />
+          </label>
+        </form>
       </div>
+      <Charts />
       <Table
         page={page}
+        setPage={setPage}
         length={length}
         orderColumn={orderColumn}
         orderDesc={orderDesc}
