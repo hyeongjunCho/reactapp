@@ -1,0 +1,32 @@
+.tableHead {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 50px;
+  line-height: 50px;
+  border: 1px solid black;
+
+  div {
+    width: 14%;
+
+    &:not(:last-child) {
+      border-right: 1px solid black;
+    }
+  }
+}
+
+.patient {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  border: 1px solid black;
+  border-top: none;
+
+  div {
+    width: 14%;
+
+    &:not(:last-child) {
+      border-right: 1px solid black;
+    }
+  }
+}
